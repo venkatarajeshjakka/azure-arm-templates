@@ -2,15 +2,18 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "storageName" : {
+        "storageName": {
             "type": "string",
             "maxLength": 24,
-            "minLength": 3
+            "minLength": 3,
+            "metadata": {
+                "description": "Unique DNS name of your storage account"
+            }
         },
         "storageSKU": {
             "type": "string",
             "defaultValue": "Standard_LRS",
-            "allowedValues":[
+            "allowedValues": [
                 "Premium_LRS",
                 "Premium_ZRS",
                 "Standard_GRS",
@@ -21,15 +24,15 @@
                 "Standard_ZRS"
             ]
         },
-        "storageTier":{
+        "storageTier": {
             "type": "string",
-             "defaultValue": "Standard",
-             "allowedValues":[
+            "defaultValue": "Standard",
+            "allowedValues": [
                 "Standard",
                 "Premium"
-             ]
+            ]
         }
-        
+
     },
     "functions": [],
     "variables": {},
