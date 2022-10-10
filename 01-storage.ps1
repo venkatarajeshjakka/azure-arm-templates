@@ -6,6 +6,7 @@ New-AzResourceGroupDeployment `
     -Name 'new-storage' `
     -ResourceGroupName $rg `
     -TemplateFile '01-storage.json'`
-    -storageName 'amdemostorage02a' `
+    -storageName 'amdemostorage03a' `
     -storageSKU 'Standard_LRS' `
-    -storageTier 'Standard'
+    -storageTier 'Standard'`
+    -environment 'dev' 
