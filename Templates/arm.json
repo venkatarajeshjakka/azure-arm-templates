@@ -1,0 +1,39 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "storageAccountName": {
+            "type": "string"
+        }
+    },
+    "functions": [],
+    "variables": {
+        "containerName": "[concat(parameters('storageAccountName'),'/default/input')]"
+    },
+    "resources": [
+        {
+            "name": "[parameters('storageAccountName')]",
+            "type": "Microsoft.Storage/storageAccounts",
+            "apiVersion": "2021-09-01",
+            "tags": {
+                "displayName": "arm-orchestration"
+            },
+            "location": "[resourceGroup().location]",
+            "kind": "StorageV2",
+            "sku": {
+                "name": "Premium_LRS",
+                "tier": "Premium"
+            }
+        },
+        {
+            "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
+            "apiVersion" : "2021-09-01",
+            "name": "[variables('containerName')]",
+            "dependsOn": [
+                "[parameters('storageAccountName')]"
+            ]
+
+        }
+    ],
+    "outputs": {}
+}

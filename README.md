@@ -12,3 +12,5 @@ Run `Connect-AzAccount`
 ### Notes
 
 * [Deploy resources with ARM templates & Azure PowerShell](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-powershell)
+
+* [ARM Templates Quick Start](https://github.com/Azure/azure-quickstart-templates/tree/master/quickstarts)
