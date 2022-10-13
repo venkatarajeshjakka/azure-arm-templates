@@ -8,11 +8,14 @@
     },
     "functions": [],
     "variables": {
-        "containerName": "[concat(parameters('storageAccountName'),'/default/input')]"
+        "containerName": "[concat(parameters('storageAccountName'),'/default/input')]",
+        "deployStorage": "[not(empty(parameters('storageAccountName')))]",
+        "storageAccountName": "[if(variables('deployStorage'),parameters('storageAccountName'),'storagedemo')]"
     },
     "resources": [
         {
-            "name": "[parameters('storageAccountName')]",
+            "condition": "[variables('deployStorage')]",
+            "name": "[variables('storageAccountName')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2021-09-01",
             "tags": {
@@ -27,7 +30,7 @@
         },
         {
             "type": "Microsoft.Storage/storageAccounts/blobServices/containers",
-            "apiVersion" : "2021-09-01",
+            "apiVersion": "2021-09-01",
             "name": "[variables('containerName')]",
             "dependsOn": [
                 "[parameters('storageAccountName')]"
